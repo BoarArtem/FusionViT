@@ -32,7 +32,14 @@ def train(model, num_epochs, optim, criterion, train_loader, device):
         accuracy = (correct/total)*100
 
         print(f"Epoch: {epoch+1}/{num_epochs}, Loss: {training_loss/len(train_loader):.4f}, Accuracy: {accuracy:.2f}%")
-        torch.save(model.state_dict(), "fusionvit.pth")
+
+        if (epoch + 1) % 50 == 0:
+            torch.save(
+                model.state_dict(),
+                f"fusionvit_{epoch+1}.pth"
+            )
+
+            print(f"Model saved at epoch {epoch+1}")
 
 
 if __name__ == "__main__":

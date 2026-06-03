@@ -11,6 +11,7 @@ def train(model, num_epochs, optim, criterion, train_loader, device):
 
     for epoch in range(num_epochs):
         training_loss = 0
+        correct, total = 0, 0
 
         for inputs, labels in train_loader:
             inputs, labels = inputs.to(device), labels.to(device)
@@ -24,7 +25,13 @@ def train(model, num_epochs, optim, criterion, train_loader, device):
 
             training_loss += loss.item()
 
-        print(f"Epoch: {epoch+1}/{num_epochs}, Loss: {training_loss/len(train_loader):.4f}")
+            preds = torch.argmax(outputs, 1)
+            correct += (preds == labels).sum().item()
+            total += labels.size(0)
+
+        accuracy = (correct/total)*100
+
+        print(f"Epoch: {epoch+1}/{num_epochs}, Loss: {training_loss/len(train_loader):.4f}, Accuracy: {accuracy:.2f}%")
         torch.save(model.state_dict(), "fusionvit.pth")
 
 

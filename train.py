@@ -1,3 +1,5 @@
+import torch
+
 from dataset import train_loader, test_loader
 from model.fusionvit import model, optim, criterion, device
 from test import test
@@ -23,6 +25,7 @@ def train(model, num_epochs, optim, criterion, train_loader, device):
             training_loss += loss.item()
 
         print(f"Epoch: {epoch+1}/{num_epochs}, Loss: {training_loss/len(train_loader):.4f}")
+        torch.save(model.state_dict(), "fusionvit.pth")
 
 
 if __name__ == "__main__":

@@ -27,7 +27,7 @@ class FusionViT(nn.Module):
 
 device = get_device()
 
-model = FusionViT(32, 4, 3, 256, 100, 1024, 6, 6, 0.2).to(device)
+model = FusionViT(32, 4, 3, 256, 100, 1024, 6, 8, 0.2).to(device)
 
 criterion = get_criterion()
 optim = get_optim(model)

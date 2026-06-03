@@ -27,7 +27,7 @@ def train(model, num_epochs, optim, criterion, train_loader, device):
 
 if __name__ == "__main__":
     total_params = sum(p.numel() for p in model.parameters())
-    num_epochs = 100
+    num_epochs = 300
 
     print(f"Total params: {total_params:,}")
     train(model, num_epochs, optim, criterion, train_loader, device)
